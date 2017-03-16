@@ -1,0 +1,62 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.header,
+.popular,
+.footer {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.header {
+  padding-bottom: 20px;
+  border-bottom: 1.5px solid #e5e5e5;
+}
+
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+}
+
+.footer {
+  padding-top: 19px;
+  color: black;
+  border-top: 1.5px solid #e5e5e5;
+}
+
+.new-post {
+  margin: 40px 0;
+}
+
+.new-post p + h4 {
+  margin-top: 28px;
+}
+
+#fava-salad,
+#broccoli-soup {
+  width: 440px;
+  height: 360px;
+}
+
+#new1 h4,
+#new2 h4 {
+  margin-top: 100px;
+  font-family: 'Diplomata SC', sans-serif;
+}
+
+#new1 h3,
+#new2 h3 {
+  font-family: 'Harmattan', sans-serif;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: bold;
+}
+
+#new1 p,
+#new2 p {
+  font-family: 'Harmattan', sans-serif;
+  font-size: 18px;
+}
