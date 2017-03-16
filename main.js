@@ -1,7 +1,7 @@
 var recipes = [
   {
     name: 'PECORINO FAVA SALAD RECIPE',
-    recipeBy: 'Recipe by Chef Jonathan Boncek',
+    recipeBy: 'Recipe by Chef Jonathan Boncek in Portland, Oregon',
     description: 'Combine the fava beans in a large bowl with the onions, escarole, and the pecorino (reserve a couple shavings for garnish). Add some red wine vinegar, some olive oil and salt, to taste. Toss to coat the salad with the dressing. Arrange the salad on serving plates and top with the reserved shaved cheese.',
     Yields: '4 servings'
   },
@@ -16,7 +16,7 @@ var recipes = [
 function renderPost(post) {
   var $post = document.createElement('div')
   var $name = document.createElement('h4')
-  var $recipeBy = document.createElement('h3')
+  var $recipeBy = document.createElement('h5')
   var $description = document.createElement('p')
   $name.textContent = post.name
   $recipeBy.textContent = post.recipeBy

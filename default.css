@@ -10,21 +10,34 @@ body {
   padding-left: 15px;
 }
 
-.header {
-  padding-bottom: 20px;
-  border-bottom: 1.5px solid #e5e5e5;
+.header h1 {
+  font-family: 'Rufina', serif;
+  text-align: center;
+  font-size: 64px;
 }
 
-.header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 40px;
+.header {
+  font-family: 'Harmattan', serif;
+  text-align: center;
+  font-size: 24px;
+}
+
+.topnav {
+  float: right;
+  margin-right: 50px;
 }
 
 .footer {
+  margin-top: 30px;
   padding-top: 19px;
   color: black;
   border-top: 1.5px solid #e5e5e5;
+}
+
+.recipes {
+  text-align: center;
+  border-style: solid;
+  border-width: medium;
 }
 
 .new-post {
@@ -47,8 +60,8 @@ body {
   font-family: 'Diplomata SC', sans-serif;
 }
 
-#new1 h3,
-#new2 h3 {
+#new1 h5,
+#new2 h5 {
   font-family: 'Harmattan', sans-serif;
   font-size: 22px;
   font-style: italic;
