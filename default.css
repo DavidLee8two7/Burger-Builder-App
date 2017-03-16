@@ -20,7 +20,11 @@ body {
   font-family: 'Harmattan', serif;
   text-align: center;
   font-size: 24px;
-  border-bottom: 1.5px solid black;
+}
+
+.topnav {
+  float: right;
+  margin-right: 50px;
 }
 
 .footer {
@@ -28,6 +32,12 @@ body {
   padding-top: 19px;
   color: black;
   border-top: 1.5px solid #e5e5e5;
+}
+
+.recipes {
+  text-align: center;
+  border-style: solid;
+  border-width: medium;
 }
 
 .new-post {
