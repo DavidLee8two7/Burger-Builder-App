@@ -34,10 +34,22 @@ body {
   border-top: 1.5px solid #e5e5e5;
 }
 
-.recipes {
+.recipes h3 {
+  padding: 15px;
+  margin: auto;
   text-align: center;
   border-style: solid;
   border-width: medium;
+}
+
+.hunger h3 {
+  padding: 15px;
+  margin: auto;
+  text-align: center;
+}
+
+.hunger img {
+  width: 292.5px;
 }
 
 .new-post {
