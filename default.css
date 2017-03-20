@@ -66,22 +66,22 @@ body {
   height: 360px;
 }
 
-#new1 h4,
-#new2 h4 {
+#item1 h4,
+#item2 h4 {
   margin-top: 100px;
   font-family: 'Diplomata SC', sans-serif;
 }
 
-#new1 h5,
-#new2 h5 {
+#item1 h5,
+#item2 h5 {
   font-family: 'Harmattan', sans-serif;
   font-size: 22px;
   font-style: italic;
   font-weight: bold;
 }
 
-#new1 p,
-#new2 p {
+#item1 p,
+#item2 p {
   font-family: 'Harmattan', sans-serif;
   font-size: 18px;
 }
