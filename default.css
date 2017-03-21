@@ -38,12 +38,12 @@ body {
 }
 
 .new-images {
-  width: 440px;
-  height: 360px;
+  width: 400px;
+  height: 300px;
 }
 
 .new-disc h4 {
-  margin-top: 100px;
+  margin-top: 50px;
   font-family: 'Diplomata SC', sans-serif;
 }
 
