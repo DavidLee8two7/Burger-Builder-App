@@ -1,89 +1,66 @@
 var recipes = [
   {
+    id: 1,
     name: 'PECORINO FAVA SALAD RECIPE',
     recipeBy: 'Recipe by Chef Jonathan Boncek in Portland, Oregon',
     description: 'Combine the fava beans in a large bowl with the onions, escarole, and the pecorino (reserve a couple shavings for garnish). Add some red wine vinegar, some olive oil and salt, to taste. Toss to coat the salad with the dressing. Arrange the salad on serving plates and top with the reserved shaved cheese.',
-    price: '$1.00',
     servingSize: '4 servings',
-    id: 1
+    image: 'recipes-img/fava-salad.jpg'
   },
   {
+    id: 2,
     name: 'CREAMY BROCCOLI SOUP',
     recipeBy: 'Recipe Kecia Johndrow of Tiny Pies in Austin, Texas',
     description: 'Small pieces of broccoli cooked and combined into a cream base makes this soup a filling and enjoyable addition to a lunch of dinner menu. Made with milk, broccoli, flavorings, and spices, Cream of Broccoli Soup can also be used as a base for chicken and rice casseroles.',
-    price: '$2.00',
     servingSize: '6 servings',
-    id: 2
+    image: 'recipes-img/fava-salad.jpg'
   }
 ]
 
-function displayItems(post) {
-  var $post = document.createElement('div')
-  var $name = document.createElement('h4')
-  var $recipeBy = document.createElement('h5')
-  $name.textContent = post.name
-  $recipeBy.textContent = post.recipeBy
-  $post.appendChild($name)
-  $post.appendChild($recipeBy)
-  return $post
+function renderPost(post) {
+  var newRecipes = document.createElement('div')
+  newRecipes.classList.add('container new-recipes')
+  var message = document.createElement('h3')
+  message.textContent = 'Newly Posted Recipes'
+  newRecipes.appendChild(message)
+
+  var topRecipe = document.createElement('div')
+  topRecipe.classList.add('row new-recipes')
+  newRecipes.appendChild(topRecipe)
+  var topImageColume = document.createElement('div')
+  topImageColume.classList.add('col-md-5')
+  topRecipe.appendChild(topImageColume)
+  var topImage = document.createElement('img')
+  topImage.classList.add('new-images')
+  topImage.setAttribute('src', recipes[0].image)
+  topImage.setAttribute('alt', 'Fava-salad picture')
+  topImageColume.appendChild(topImage)
+
+  var topDisplay = document.createElement('div')
+  topDisplay.classList.add('col-md-7 new-disc')
+  topRecipe.appendChild(topDisplay)
+  var topName = document.createElement('h4')
+  topName.textContent = post.name
+  topDisplay.appendChild(topName)
+  var topRecipeBy = document.createElement('h5')
+  topRecipeBy.textContent = post.recipeBy
+  topDisplay.appendChild(topRecipeBy)
+  var topDescription = document.createElement('p')
+  topDescription.textContent = post.description
+  topDisplay.appendChild(topDescription)
+
+  var recipeView = document.createElement('input')
+  recipeView.setAttribute('type', 'button')
+  recipeView.setAttribute('value', 'Recipe Details')
+  topRecipe.appendChild(recipeView)
+
+  return post
 }
 
 recipes.forEach(function (post) {
-  var $post = displayItems(post)
+  var $post = renderPost(post)
   if (post.id === 1) {
-    var $item1 = document.getElementById('item1')
-    $item1.appendChild($post)
+    var recipesFrameBox = document.getElementsByClassName('outter')
+    recipesFrameBox.appendChild($post)
   }
-  if (post.id === 2) {
-    var $item2 = document.getElementById('item2')
-    $item2.appendChild($post)
-  }
-})
-
-var firstButton = document.getElementById('first-button')
-firstButton.addEventListener('click', function(event) {
-  function displayItems(post) {
-    var $post = document.createElement('div')
-    var $detailDescription = document.createElement('p')
-    var $detailPrice = document.createElement('p')
-    var $detailServing = document.createElement('p')
-    $detailDescription.textContent = post.description
-    $detailPrice.textContent = post.price
-    $detailServing.textContent = post.servingSize
-    $post.appendChild($detailDescription)
-    $post.appendChild($detailPrice)
-    $post.appendChild($detailServing)
-    return $post
-  }
-  recipes.forEach(function (post) {
-    var $post = displayItems(post)
-    if (post.id === 1) {
-      var $item1 = document.getElementById('item1')
-      $item1.appendChild($post)
-    }
-  })
-})
-
-var secondButton = document.getElementById('second-button')
-secondButton.addEventListener('click', function(event) {
-  function displayItems(post) {
-    var $post = document.createElement('div')
-    var $detailDescription = document.createElement('p')
-    var $detailPrice = document.createElement('p')
-    var $detailServing = document.createElement('p')
-    $detailDescription.textContent = post.description
-    $detailPrice.textContent = post.price
-    $detailServing.textContent = post.servingSize
-    $post.appendChild($detailDescription)
-    $post.appendChild($detailPrice)
-    $post.appendChild($detailServing)
-    return $post
-  }
-  recipes.forEach(function (post) {
-    var $post = displayItems(post)
-    if (post.id === 2) {
-      var $item2 = document.getElementById('item2')
-      $item2.appendChild($post)
-    }
-  })
 })

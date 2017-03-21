@@ -4,7 +4,7 @@ body {
 }
 
 .header,
-.popular,
+.new-recipes,
 .footer {
   padding-right: 15px;
   padding-left: 15px;
@@ -22,11 +22,6 @@ body {
   font-size: 24px;
 }
 
-.topnav {
-  float: right;
-  margin-right: 50px;
-}
-
 .footer {
   margin-top: 30px;
   padding-top: 19px;
@@ -34,54 +29,32 @@ body {
   border-top: 1.5px solid #e5e5e5;
 }
 
-.recipes h3 {
-  padding: 15px;
-  margin: auto;
-  text-align: center;
-  border-style: solid;
-  border-width: medium;
-}
-
-.hunger h3 {
-  padding: 15px;
-  margin: auto;
-  text-align: center;
-}
-
-.hunger img {
-  width: 292.5px;
-}
-
-.new-post {
+.new-recipes {
   margin: 40px 0;
 }
 
-.new-post p + h4 {
+.new-recipes p + h3 {
   margin-top: 28px;
 }
 
-#fava-salad,
-#broccoli-soup {
+.new-images {
   width: 440px;
   height: 360px;
 }
 
-#item1 h4,
-#item2 h4 {
+.new-disc h4 {
   margin-top: 100px;
   font-family: 'Diplomata SC', sans-serif;
 }
 
-#item1 h5,
-#item2 h5 {
+.new-disc h5 {
   font-family: 'Harmattan', sans-serif;
   font-size: 22px;
   font-style: italic;
   font-weight: bold;
 }
 
-#item1 p,
-#item2 p {
+.new-disc p {
   font-family: 'Harmattan', sans-serif;
   font-size: 18px;
 }
