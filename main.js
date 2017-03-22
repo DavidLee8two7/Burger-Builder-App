@@ -159,26 +159,23 @@ recipes.forEach(function (show) {
   newRecipesDirections.appendChild($show)
 })
 
+var recipesView = document.getElementById('recipes-updates')
+var directionsView = document.getElementById('recipes-directions')
+window.onload = function(visible) {
+  recipesView.classList.add('visible')
+  directionsView.classList.add('hidden')
+}
+
 // need to put ingredient list on 'li' attribue w/ calssName 'ingredientli'
 // same thing goes to direction steps
-var ingredientListDirection = document.getElementsByClassName('ingredientli')
-function getIngredient(data) {
-  var total = 0
-  for (var i = 0; i < data.length; i++) {
-    total = data[i].ingredient
-  }
-  return total
-}
-ingredientListDirection.appendChild(getIngredient)
-
 // this to switch views when clicked on button on each class between hidden and show
-var recipesView = document.getElementById('recipes-updates')
-recipesView.addEventListener('click', function () {
+var viewRecipe = document.getElementById('id')
+var viewDirection = document.getElementById('id')
+viewRecipe.addEventListener('click', function (showHide) {
   recipesView.classList.add('hidden')
   directionsView.classList.add('visible')
 })
-var directionsView = document.getElementById('recipes-directions')
-directionsView.addEventListener('click', function () {
+viewDirection.addEventListener('click', function (showHide) {
   recipesView.classList.add('visible')
   directionsView.classList.add('hidden')
 })
