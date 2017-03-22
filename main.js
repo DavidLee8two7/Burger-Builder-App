@@ -130,7 +130,7 @@ function directionsPost(show) {
   var ingredients = document.createElement('li')
   ingredients.classList.add('ingredientli')
   ingredientList.appendChild(ingredients)
-  // how to put array objects in the list for ingredients
+  // put array objects in the list for ingredients
 
   var cookingDirections = document.createElement('div')
   cookingDirections.classList.add('row')
@@ -143,7 +143,7 @@ function directionsPost(show) {
   directionsSteps.appendChild(recipesCookingSteps)
   var cookingSteps = document.createElement('li')
   recipesCookingSteps.appendChild(cookingSteps)
-  // how to put array objects in the list for cooking steps
+  // put array objects in the list for cooking direction
 
   var closeDirections = document.createElement('input')
   closeDirections.setAttribute('type', 'button')
@@ -173,17 +173,12 @@ ingredientListDirection.appendChild(getIngredient)
 
 // this to switch views when clicked on button on each class between hidden and show
 var recipesView = document.getElementById('recipes-updates')
+recipesView.addEventListener('click', function () {
+  recipesView.classList.add('hidden')
+  directionsView.classList.add('visible')
+})
 var directionsView = document.getElementById('recipes-directions')
-// but how to assign it by id number
-var recipesViewBtn = document.getElementById('')
-var directionsViewBtn = document.getElementById('')
-
-recipesViewBtn.onclick = function() {
-  recipesView.setAttribute('class', 'hidden')
-  directionsView.setAttribute('class', 'visible')
-}
-
-directionsViewBtn.onclick = function() {
-  recipesView.setAttribute('class', 'hidden')
-  directionsView.setAttribute('class', 'visible')
-}
+directionsView.addEventListener('click', function () {
+  recipesView.classList.add('visible')
+  directionsView.classList.add('hidden')
+})
