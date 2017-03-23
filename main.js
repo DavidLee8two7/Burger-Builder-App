@@ -24,7 +24,7 @@ var recipes = [
   {
     id: 3,
     name: 'SUNNY BREAKFAST CASSEROLE',
-    recipeBy: 'Recipe by Chef Lauren Utvich in Los Angeles, California',
+    recipeBy: 'Recipe by C  hef Lauren Utvich in Los Angeles, California',
     description: 'The Sunny Skillet Breakfast can easily be altered to fit the tastes of your crowd. Try mixing in some of your favorite veggies or breakfast meats.',
     servingSize: '4 servings',
     ingredient: ['1 pound fingerling or other small potatoes', '4 ounces slab bacon cut into ¼-inch matchsticks', '2 tablespoons unsalted butter', '2 tablespoons flour', '1 cup whole milk', 'Salt and pepper to taste', '4 eggs'],
@@ -93,7 +93,6 @@ function directionsPost(show) {
   var showDirections = document.createElement('div')
   showDirections.classList.add('container')
   showDirections.classList.add('new-recipes')
-
   var recipeTitle = document.createElement('div')
   recipeTitle.classList.add('row')
   recipeTitle.classList.add('new-recipes')
@@ -108,7 +107,6 @@ function directionsPost(show) {
   var recipeTitleBy = document.createElement('h5')
   recipeTitleBy.textContent = show.recipeBy
   descriptionDetails.appendChild(recipeTitleBy)
-
   var recipeIngredient = document.createElement('div')
   recipeIngredient.classList.add('row')
   recipeIngredient.classList.add('new-recipes')
@@ -121,17 +119,17 @@ function directionsPost(show) {
   ingredientImage.setAttribute('src', show.image)
   ingredientImage.setAttribute('alt', show.alt)
   directionsImage.appendChild(ingredientImage)
-
   var directionsIngredient = document.createElement('div')
   directionsIngredient.classList.add('col-md-7')
   recipeIngredient.appendChild(directionsIngredient)
   var ingredientList = document.createElement('ul')
   directionsIngredient.appendChild(ingredientList)
   var ingredients = document.createElement('li')
-  ingredients.classList.add('ingredientli')
   ingredientList.appendChild(ingredients)
-  // put array objects in the list for ingredients
-
+  for (var i = 0; i < show.length; i++) {
+    var $ingredients = show[i].ingredient
+    ingredients.appendChild($ingredients)
+  }
   var cookingDirections = document.createElement('div')
   cookingDirections.classList.add('row')
   cookingDirections.classList.add('new-recipes')
@@ -143,39 +141,40 @@ function directionsPost(show) {
   directionsSteps.appendChild(recipesCookingSteps)
   var cookingSteps = document.createElement('li')
   recipesCookingSteps.appendChild(cookingSteps)
-  // put array objects in the list for cooking direction
-
+  for (var z = 0; z < show.length; z++) {
+    var $directions = show[z].cookingDirections
+    cookingSteps.appendChild($directions)
+  }
   var closeDirections = document.createElement('input')
   closeDirections.setAttribute('type', 'button')
   closeDirections.setAttribute('value', 'Enjoy Cooking!')
   closeDirections.setAttribute('id', show.id)
   showDirections.appendChild(closeDirections)
-
   return showDirections
 }
 
-recipes.forEach(function (show) {
-  var $show = directionsPost(show)
-  newRecipesDirections.appendChild($show)
+var selectedRecipe = document.querySelector('recipes-updates')
+selectedRecipe.addEventListener('click', function (event) {
+  if (event.target.id === findItem(find)) {
+    var selected = findItem(find)
+    selected = directionsPost(find)
+  }
+  newRecipesDirections.appendChild(selected)
 })
 
-var recipesView = document.getElementById('recipes-updates')
-var directionsView = document.getElementById('recipes-directions')
-window.onload = function(visible) {
-  recipesView.classList.add('visible')
-  directionsView.classList.add('hidden')
+function findItem(show) {
+  var find = 0
+  for (var i = 0; i < show.length; i++) {
+    if (show.id[i] === event.id.clicked) {
+      find = show.id[i]
+    }
+    return find
+  }
 }
 
-// need to put ingredient list on 'li' attribue w/ calssName 'ingredientli'
-// same thing goes to direction steps
+// found return value then put it throught directionsPost(items)
+// function to hind and show
 // this to switch views when clicked on button on each class between hidden and show
-var viewRecipe = document.getElementById('id')
-var viewDirection = document.getElementById('id')
-viewRecipe.addEventListener('click', function (showHide) {
-  recipesView.classList.add('hidden')
-  directionsView.classList.add('visible')
-})
-viewDirection.addEventListener('click', function (showHide) {
-  recipesView.classList.add('visible')
-  directionsView.classList.add('hidden')
-})
+/* 1. put array objects in the list for cooking direction and ingredient
+  2. eventlistener to listen to event and finding data from the arrays(objects)
+3. how to make switches between main window and cooking directions */
