@@ -122,18 +122,14 @@ function directionsPost(show) {
   var directionsIngredient = document.createElement('div')
   directionsIngredient.classList.add('col-md-7')
   recipeIngredient.appendChild(directionsIngredient)
-  var ingredientList = document.createElement('ul')
-  directionsIngredient.appendChild(ingredientList)
-  var ingredients = document.createElement('li')
-  ingredientList.appendChild(ingredients)
 
-  for (var i = 0; i < recipes.length; i++) {
-    var showIngredient = recipes[i]
-    if (showIngredient.ingredient.toString() === show) {
-      return showIngredient
-    }
+  var ingredientList = document.createElement('ul')
+  for (var i = 0; i < show.ingredient.length; i++) {
+    var ingredients = document.createElement('li')
+    ingredients.textContent = show.ingredient[i]
+    ingredientList.appendChild(ingredients)
   }
-  ingredients.appendChild(showIngredient)
+  directionsIngredient.appendChild(ingredientList)
 
   var cookingDirections = document.createElement('div')
   cookingDirections.classList.add('row')
@@ -180,6 +176,6 @@ var detailsContainer = document.getElementById('recipes-directions')
 detailsContainer.addEventListener('click', function () {
   if (event.target.tagName === 'INPUT') {
     newRecipesUpdates.classList.remove('hidden')
-    newRecipesDirections.classList.remove('visiable')
+    // newRecipesDirections.classList.remove('visiable')
   }
 })
