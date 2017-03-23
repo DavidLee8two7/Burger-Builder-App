@@ -17,7 +17,7 @@ var recipes = [
     description: 'Small pieces of broccoli cooked and combined into a cream base makes this soup a filling and enjoyable addition to a lunch of dinner menu. Made with milk, broccoli, flavorings, and spices, Cream of Broccoli Soup can also be used as a base for chicken and rice casseroles.',
     servingSize: '6 servings',
     ingredient: ['1 medium yellow onion', '2 pounds broccoli', '8 tablespoons butter', '1/4 teaspoon ground thyme', '1/2 cup flour', '2 quarts chicken stock, slightly warmed', 'Salt to taste'],
-    cookingDirections: ['1. Peel onion and finely chop. Chop broccoli florets from stems. Peel broccoli stems with vegetable peeler and finely chop stems.', '2. In large stock pot, heat butter over medium-low heat. Add onion and thyme. Cook until onions are translucent, about 5 minutes. Add flour to make roux, whisking until well-combined. Continue to whisk until color slightly deepens, about 5-8 minutes. Pour chicken stock into pot, whisking constantly, until all is smooth. Bring liquid to simmer over low heat and cook for 20 minutes, whisking occasionally. Add broccoli florets and stems to pot and stir. Continue to cook for an additional 10-15 minutes, until broccoli is very tender. Remove pot from heat.', '3. Blend soup in blender or with immersion blender until smooth. Note: Do not fill blender more than halfway and be careful removing lid. Strain through sieve to remove any small remaining lumps. Return soup to stove to rewarm. Season to taste.'],
+    cookingDirections: ['Peel onion and finely chop. Chop broccoli florets from stems. Peel broccoli stems with vegetable peeler and finely chop stems.', 'In large stock pot, heat butter over medium-low heat. Add onion and thyme. Cook until onions are translucent, about 5 minutes. Add flour to make roux, whisking until well-combined. Continue to whisk until color slightly deepens, about 5-8 minutes. Pour chicken stock into pot, whisking constantly, until all is smooth. Bring liquid to simmer over low heat and cook for 20 minutes, whisking occasionally. Add broccoli florets and stems to pot and stir. Continue to cook for an additional 10-15 minutes, until broccoli is very tender. Remove pot from heat.', 'Blend soup in blender or with immersion blender until smooth. Note: Do not fill blender more than halfway and be careful removing lid. Strain through sieve to remove any small remaining lumps. Return soup to stove to rewarm. Season to taste.'],
     image: 'recipes-img/broccoli-soup.jpg',
     alt: 'Broccoli Soup'
   },
@@ -39,7 +39,7 @@ var recipes = [
     description: 'Combine the fava beans in a large bowl with the onions, escarole, and the pecorino (reserve a couple shavings for garnish). Add some red wine vinegar, some olive oil and salt, to taste. Toss to coat the salad with the dressing. Arrange the salad on serving plates and top with the reserved shaved cheese.',
     servingSize: '4 servings',
     ingredient: ['6 ounces Pecorino Toscano or Fiore Sardo cheese', '1 pound fava beans removed from their pods', '⅓ cup high quality extra virgin olive oil ', 'Sea salt and fresh ground black pepper', '1 loaf bread'],
-    cookingDirections: ['reak pecorino into small pieces into a bowl with shelled fava beans.', 'Drizzle extra virgin olive oil over favas and cheese and season to taste with salt and pepper. Gently toss salad, then divide among plates. Serve with good bread.'],
+    cookingDirections: ['Reak pecorino into small pieces into a bowl with shelled fava beans.', 'Drizzle extra virgin olive oil over favas and cheese and season to taste with salt and pepper. Gently toss salad, then divide among plates. Serve with good bread.'],
     image: 'recipes-img/fava-salad.jpg',
     alt: 'Fava Salad'
   }
@@ -122,6 +122,9 @@ function directionsPost(show) {
   var directionsIngredient = document.createElement('div')
   directionsIngredient.classList.add('col-md-7')
   recipeIngredient.appendChild(directionsIngredient)
+  var ingredientTitle = document.createElement('h4')
+  ingredientTitle.textContent = 'Ingredients'
+  directionsIngredient.appendChild(ingredientTitle)
 
   var ingredientList = document.createElement('ul')
   for (var i = 0; i < show.ingredient.length; i++) {
@@ -138,10 +141,17 @@ function directionsPost(show) {
   var directionsSteps = document.createElement('div')
   directionsSteps.classList.add('col-md-12')
   cookingDirections.appendChild(directionsSteps)
-  var recipesCookingSteps = document.createElement('ul')
+  var directionsTitle = document.createElement('h4')
+  directionsTitle.textContent = 'Cooking Directions'
+  directionsSteps.appendChild(directionsTitle)
+
+  var recipesCookingSteps = document.createElement('ol')
+  for (var z = 0; z < show.cookingDirections.length; z++) {
+    var cookingSteps = document.createElement('li')
+    cookingSteps.textContent = show.cookingDirections[z]
+    recipesCookingSteps.appendChild(cookingSteps)
+  }
   directionsSteps.appendChild(recipesCookingSteps)
-  var cookingSteps = document.createElement('li')
-  recipesCookingSteps.appendChild(cookingSteps)
 
   var closeDirections = document.createElement('input')
   closeDirections.setAttribute('type', 'button')
@@ -166,9 +176,10 @@ recipeContainer.addEventListener('click', function () {
     var recipeId = event.target.id
     var details = findItem(recipeId)
     var push = directionsPost(details)
+    newRecipesDirections.innerHTML = ''
     newRecipesDirections.appendChild(push)
     newRecipesUpdates.classList.add('hidden')
-    newRecipesDirections.classList.remove('visiable')
+    newRecipesDirections.classList.remove('hidden')
   }
 })
 
@@ -176,6 +187,6 @@ var detailsContainer = document.getElementById('recipes-directions')
 detailsContainer.addEventListener('click', function () {
   if (event.target.tagName === 'INPUT') {
     newRecipesUpdates.classList.remove('hidden')
-    // newRecipesDirections.classList.remove('visiable')
+    newRecipesDirections.classList.add('hidden')
   }
 })
