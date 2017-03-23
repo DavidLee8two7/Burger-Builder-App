@@ -126,10 +126,7 @@ function directionsPost(show) {
   directionsIngredient.appendChild(ingredientList)
   var ingredients = document.createElement('li')
   ingredientList.appendChild(ingredients)
-  for (var i = 0; i < show.length; i++) {
-    var $ingredients = show[i].ingredient
-    ingredients.appendChild($ingredients)
-  }
+
   var cookingDirections = document.createElement('div')
   cookingDirections.classList.add('row')
   cookingDirections.classList.add('new-recipes')
@@ -141,10 +138,7 @@ function directionsPost(show) {
   directionsSteps.appendChild(recipesCookingSteps)
   var cookingSteps = document.createElement('li')
   recipesCookingSteps.appendChild(cookingSteps)
-  for (var z = 0; z < show.length; z++) {
-    var $directions = show[z].cookingDirections
-    cookingSteps.appendChild($directions)
-  }
+
   var closeDirections = document.createElement('input')
   closeDirections.setAttribute('type', 'button')
   closeDirections.setAttribute('value', 'Enjoy Cooking!')
@@ -153,26 +147,46 @@ function directionsPost(show) {
   return showDirections
 }
 
-function findItem(show) {
-  var find = 0
-  for (var i = 0; i < show.length; i++) {
-    if (show.id[i].clicked) {
-      find++
+function findItem(findId) {
+  for (var i = 0; i < recipes.length; i++) {
+    var current = recipes[i]
+    if (current.id.toString() === findId) {
+      return current
     }
-    return find
   }
 }
 
-var btn = document.querySelector('INPUT')
-btn.addEventListener('click', function () {
-  if (event.target.id === findItem(find)) {
-    var push = findItem(find)
-    push = directionsPost(find)
+var recipeContainer = document.getElementById('recipes-updates')
+recipeContainer.addEventListener('click', function () {
+  if (event.target.tagName === 'INPUT') {
+    var recipeId = event.target.id
+    var details = findItem(recipeId)
+    var push = directionsPost(details)
     newRecipesDirections.appendChild(push)
     newRecipesUpdates.classList.add('hidden')
     newRecipesDirections.classList.remove('visiable')
   }
 })
+
+var detailsContainer = document.getElementById('recipes-directions')
+detailsContainer.addEventListener('click', function () {
+  if (event.target.tagName === 'INPUT') {
+    newRecipesUpdates.classList.remove('hidden')
+    newRecipesDirections.classList.add('hidden')
+  }
+})
+
+// for (var i = 0; i < recipes.length; i++) {
+//   var $ingredients = recipes[i].ingredient
+//   ingredients.appendC
+//   for (var z = 0; z < recipes.length; z++) {
+//     var $directions = recipes[z].cookingDirections
+//     cookingSteps.appendChild($directions)
+//   }
+
+// newRecipesDirections.appendChild(push)
+// newRecipesUpdates.classList.add('hidden')
+// newRecipesDirections.classList.remove('visiable')
 // found return value then put it throught directionsPost(items)
 // function to hind and show
 // this to switch views when clicked on button on each class between hidden and show
