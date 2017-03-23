@@ -153,25 +153,26 @@ function directionsPost(show) {
   return showDirections
 }
 
-var selectedRecipe = document.querySelector('recipes-updates')
-selectedRecipe.addEventListener('click', function (event) {
-  if (event.target.id === findItem(find)) {
-    var selected = findItem(find)
-    selected = directionsPost(find)
-  }
-  newRecipesDirections.appendChild(selected)
-})
-
 function findItem(show) {
   var find = 0
   for (var i = 0; i < show.length; i++) {
-    if (show.id[i] === event.id.clicked) {
-      find = show.id[i]
+    if (show.id[i].clicked) {
+      find++
     }
     return find
   }
 }
 
+var btn = document.querySelector('INPUT')
+btn.addEventListener('click', function () {
+  if (event.target.id === findItem(find)) {
+    var push = findItem(find)
+    push = directionsPost(find)
+    newRecipesDirections.appendChild(push)
+    newRecipesUpdates.classList.add('hidden')
+    newRecipesDirections.classList.remove('visiable')
+  }
+})
 // found return value then put it throught directionsPost(items)
 // function to hind and show
 // this to switch views when clicked on button on each class between hidden and show
