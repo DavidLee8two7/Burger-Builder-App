@@ -127,6 +127,14 @@ function directionsPost(show) {
   var ingredients = document.createElement('li')
   ingredientList.appendChild(ingredients)
 
+  for (var i = 0; i < recipes.length; i++) {
+    var showIngredient = recipes[i]
+    if (showIngredient.ingredient.toString() === show) {
+      return showIngredient
+    }
+  }
+  ingredients.appendChild(showIngredient)
+
   var cookingDirections = document.createElement('div')
   cookingDirections.classList.add('row')
   cookingDirections.classList.add('new-recipes')
@@ -172,24 +180,6 @@ var detailsContainer = document.getElementById('recipes-directions')
 detailsContainer.addEventListener('click', function () {
   if (event.target.tagName === 'INPUT') {
     newRecipesUpdates.classList.remove('hidden')
-    newRecipesDirections.classList.add('hidden')
+    newRecipesDirections.classList.remove('visiable')
   }
 })
-
-// for (var i = 0; i < recipes.length; i++) {
-//   var $ingredients = recipes[i].ingredient
-//   ingredients.appendC
-//   for (var z = 0; z < recipes.length; z++) {
-//     var $directions = recipes[z].cookingDirections
-//     cookingSteps.appendChild($directions)
-//   }
-
-// newRecipesDirections.appendChild(push)
-// newRecipesUpdates.classList.add('hidden')
-// newRecipesDirections.classList.remove('visiable')
-// found return value then put it throught directionsPost(items)
-// function to hind and show
-// this to switch views when clicked on button on each class between hidden and show
-/* 1. put array objects in the list for cooking direction and ingredient
-  2. eventlistener to listen to event and finding data from the arrays(objects)
-3. how to make switches between main window and cooking directions */
