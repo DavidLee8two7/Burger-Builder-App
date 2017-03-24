@@ -80,6 +80,7 @@ function renderPost(post) {
   recipeView.setAttribute('value', 'Show Cooking Directions')
   recipeView.setAttribute('id', post.id)
   recipeUpdates.appendChild(recipeView)
+
   return newRecipes
 }
 
@@ -125,7 +126,6 @@ function directionsPost(show) {
   var ingredientTitle = document.createElement('h4')
   ingredientTitle.textContent = 'Ingredients'
   directionsIngredient.appendChild(ingredientTitle)
-
   var ingredientList = document.createElement('ul')
   for (var i = 0; i < show.ingredient.length; i++) {
     var ingredients = document.createElement('li')
@@ -133,7 +133,6 @@ function directionsPost(show) {
     ingredientList.appendChild(ingredients)
   }
   directionsIngredient.appendChild(ingredientList)
-
   var cookingDirections = document.createElement('div')
   cookingDirections.classList.add('row')
   cookingDirections.classList.add('new-recipes')
@@ -144,7 +143,6 @@ function directionsPost(show) {
   var directionsTitle = document.createElement('h4')
   directionsTitle.textContent = 'Cooking Directions'
   directionsSteps.appendChild(directionsTitle)
-
   var recipesCookingSteps = document.createElement('ol')
   for (var z = 0; z < show.cookingDirections.length; z++) {
     var cookingSteps = document.createElement('li')
@@ -152,12 +150,12 @@ function directionsPost(show) {
     recipesCookingSteps.appendChild(cookingSteps)
   }
   directionsSteps.appendChild(recipesCookingSteps)
-
   var closeDirections = document.createElement('input')
   closeDirections.setAttribute('type', 'button')
   closeDirections.setAttribute('value', 'Enjoy Cooking!')
   closeDirections.setAttribute('id', show.id)
   showDirections.appendChild(closeDirections)
+
   return showDirections
 }
 
@@ -186,7 +184,62 @@ recipeContainer.addEventListener('click', function () {
 var detailsContainer = document.getElementById('recipes-directions')
 detailsContainer.addEventListener('click', function () {
   if (event.target.tagName === 'INPUT') {
-    newRecipesUpdates.classList.remove('hidden')
     newRecipesDirections.classList.add('hidden')
+    var $popUp = contactInfo()
+    contact.appendChild($popUp)
   }
 })
+
+var contact = document.getElementById('contact')
+function contactInfo(popUp) {
+  var signUp = document.createElement('div')
+  signUp.setAttribute('id', 'popup-contact')
+  contact.appendChild(signUp)
+  var signUpForm = document.createElement('form')
+  signUpForm.setAttribute('action', '#')
+  signUpForm.setAttribute('id', 'form')
+  signUpForm.setAttribute('method', 'post')
+  signUpForm.setAttribute('name', 'form')
+  signUp.appendChild(signUpForm)
+  var contactUs = document.createElement('h2')
+  contactUs.textContent = 'Contact Us'
+  signUp.appendChild(contactUs)
+  var lineBreak = document.createElement('hr')
+  contactUs.appendChild(lineBreak)
+  var inputName = document.createElement('input')
+  inputName.setAttribute('id', 'name')
+  inputName.setAttribute('name', 'name')
+  inputName.setAttribute('placeholder', 'Name')
+  inputName.setAttribute('type', 'text')
+  signUp.appendChild(inputName)
+  var inputEmail = document.createElement('input')
+  inputEmail.setAttribute('id', 'email')
+  inputEmail.setAttribute('name', 'email')
+  inputEmail.setAttribute('placeholder', 'Email')
+  inputEmail.setAttribute('type', 'text')
+  signUp.appendChild(inputEmail)
+  var textArea = document.createElement('textarea')
+  textArea.setAttribute('id', 'msg')
+  textArea.setAttribute('name', 'message')
+  textArea.setAttribute('placeholder', 'Message')
+  signUp.appendChild(textArea)
+  var submit = document.createElement('a')
+  submit.setAttribute('href', 'javascript:checkEmpty()')
+  submit.setAttribute('id', 'submit')
+  submit.textContent = 'Send'
+  signUp.appendChild(submit)
+
+  return signUp
+}
+
+function checkEmpty() {
+  if (document.getElementById('name').value === '' ||
+  document.getElementById('email').value === '' ||
+  document.getElementById('msg').value === '') {
+    alert('PLEASE SIGN UP FOR FREE RECIPE UPDATES!')
+  }
+  else {
+    document.getElementById('form').submit()
+    alert('THANK YOU! ENJOY COOKING HAVE HAVE GOOD TIME!')
+  }
+}
