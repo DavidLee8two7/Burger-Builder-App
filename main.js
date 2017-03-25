@@ -46,7 +46,7 @@ var recipes = [
 ]
 
 var newRecipesUpdates = document.getElementById('recipes-updates')
-function renderPost(post) {
+function weeklyUpdate(post) {
   var newRecipes = document.createElement('div')
   newRecipes.classList.add('container')
   newRecipes.classList.add('new-recipes')
@@ -69,22 +69,24 @@ function renderPost(post) {
   var recipeName = document.createElement('h4')
   recipeName.textContent = post.name
   recipeContents.appendChild(recipeName)
-  var recipeUpdatesBy = document.createElement('h5')
-  recipeUpdatesBy.textContent = post.recipeBy
-  recipeContents.appendChild(recipeUpdatesBy)
-  var recipeDescription = document.createElement('p')
-  recipeDescription.textContent = post.description
-  recipeContents.appendChild(recipeDescription)
+  var recipesBy = document.createElement('h5')
+  recipesBy.textContent = post.recipeBy
+  recipeContents.appendChild(recipesBy)
+  var recipeIntro = document.createElement('p')
+  recipeIntro.textContent = post.description
+  recipeContents.appendChild(recipeIntro)
   var recipeView = document.createElement('input')
+  recipeView.setAttribute('class', 'button-design')
   recipeView.setAttribute('type', 'button')
   recipeView.setAttribute('value', 'Show Cooking Directions')
   recipeView.setAttribute('id', post.id)
   recipeUpdates.appendChild(recipeView)
+
   return newRecipes
 }
 
 recipes.forEach(function (post) {
-  var $post = renderPost(post)
+  var $post = weeklyUpdate(post)
   newRecipesUpdates.appendChild($post)
 })
 
@@ -125,7 +127,6 @@ function directionsPost(show) {
   var ingredientTitle = document.createElement('h4')
   ingredientTitle.textContent = 'Ingredients'
   directionsIngredient.appendChild(ingredientTitle)
-
   var ingredientList = document.createElement('ul')
   for (var i = 0; i < show.ingredient.length; i++) {
     var ingredients = document.createElement('li')
@@ -133,7 +134,6 @@ function directionsPost(show) {
     ingredientList.appendChild(ingredients)
   }
   directionsIngredient.appendChild(ingredientList)
-
   var cookingDirections = document.createElement('div')
   cookingDirections.classList.add('row')
   cookingDirections.classList.add('new-recipes')
@@ -144,7 +144,6 @@ function directionsPost(show) {
   var directionsTitle = document.createElement('h4')
   directionsTitle.textContent = 'Cooking Directions'
   directionsSteps.appendChild(directionsTitle)
-
   var recipesCookingSteps = document.createElement('ol')
   for (var z = 0; z < show.cookingDirections.length; z++) {
     var cookingSteps = document.createElement('li')
@@ -152,12 +151,12 @@ function directionsPost(show) {
     recipesCookingSteps.appendChild(cookingSteps)
   }
   directionsSteps.appendChild(recipesCookingSteps)
-
   var closeDirections = document.createElement('input')
   closeDirections.setAttribute('type', 'button')
   closeDirections.setAttribute('value', 'Enjoy Cooking!')
   closeDirections.setAttribute('id', show.id)
   showDirections.appendChild(closeDirections)
+
   return showDirections
 }
 
@@ -190,3 +189,27 @@ detailsContainer.addEventListener('click', function () {
     newRecipesDirections.classList.add('hidden')
   }
 })
+
+
+// Get the modal
+var modal = document.getElementById('id01')
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target === modal) {
+    modal.style.display = 'none'
+  }
+}
+
+//
+// function checkEmpty() {
+//   if (document.getElementById('name').value === '' ||
+//   document.getElementById('email').value === '' ||
+//   document.getElementById('msg').value === '') {
+//     alert('PLEASE SIGN UP FOR FREE RECIPE UPDATES!')
+//   }
+//   else {
+//     document.getElementById('form').submit()
+//     alert('THANK YOU! ENJOY COOKING HAVE HAVE GOOD TIME!')
+//   }
+// }
