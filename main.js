@@ -46,7 +46,7 @@ var recipes = [
 ]
 
 var newRecipesUpdates = document.getElementById('recipes-updates')
-function renderPost(post) {
+function weeklyUpdate(post) {
   var newRecipes = document.createElement('div')
   newRecipes.classList.add('container')
   newRecipes.classList.add('new-recipes')
@@ -69,13 +69,14 @@ function renderPost(post) {
   var recipeName = document.createElement('h4')
   recipeName.textContent = post.name
   recipeContents.appendChild(recipeName)
-  var recipeUpdatesBy = document.createElement('h5')
-  recipeUpdatesBy.textContent = post.recipeBy
-  recipeContents.appendChild(recipeUpdatesBy)
-  var recipeDescription = document.createElement('p')
-  recipeDescription.textContent = post.description
-  recipeContents.appendChild(recipeDescription)
+  var recipesBy = document.createElement('h5')
+  recipesBy.textContent = post.recipeBy
+  recipeContents.appendChild(recipesBy)
+  var recipeIntro = document.createElement('p')
+  recipeIntro.textContent = post.description
+  recipeContents.appendChild(recipeIntro)
   var recipeView = document.createElement('input')
+  recipeView.setAttribute('class', 'button-design')
   recipeView.setAttribute('type', 'button')
   recipeView.setAttribute('value', 'Show Cooking Directions')
   recipeView.setAttribute('id', post.id)
@@ -85,7 +86,7 @@ function renderPost(post) {
 }
 
 recipes.forEach(function (post) {
-  var $post = renderPost(post)
+  var $post = weeklyUpdate(post)
   newRecipesUpdates.appendChild($post)
 })
 
@@ -184,62 +185,31 @@ recipeContainer.addEventListener('click', function () {
 var detailsContainer = document.getElementById('recipes-directions')
 detailsContainer.addEventListener('click', function () {
   if (event.target.tagName === 'INPUT') {
+    newRecipesUpdates.classList.remove('hidden')
     newRecipesDirections.classList.add('hidden')
-    var $popUp = contactInfo()
-    contact.appendChild($popUp)
   }
 })
 
-var contact = document.getElementById('contact')
-function contactInfo(popUp) {
-  var signUp = document.createElement('div')
-  signUp.setAttribute('id', 'popup-contact')
-  contact.appendChild(signUp)
-  var signUpForm = document.createElement('form')
-  signUpForm.setAttribute('action', '#')
-  signUpForm.setAttribute('id', 'form')
-  signUpForm.setAttribute('method', 'post')
-  signUpForm.setAttribute('name', 'form')
-  signUp.appendChild(signUpForm)
-  var contactUs = document.createElement('h2')
-  contactUs.textContent = 'Contact Us'
-  signUp.appendChild(contactUs)
-  var lineBreak = document.createElement('hr')
-  contactUs.appendChild(lineBreak)
-  var inputName = document.createElement('input')
-  inputName.setAttribute('id', 'name')
-  inputName.setAttribute('name', 'name')
-  inputName.setAttribute('placeholder', 'Name')
-  inputName.setAttribute('type', 'text')
-  signUp.appendChild(inputName)
-  var inputEmail = document.createElement('input')
-  inputEmail.setAttribute('id', 'email')
-  inputEmail.setAttribute('name', 'email')
-  inputEmail.setAttribute('placeholder', 'Email')
-  inputEmail.setAttribute('type', 'text')
-  signUp.appendChild(inputEmail)
-  var textArea = document.createElement('textarea')
-  textArea.setAttribute('id', 'msg')
-  textArea.setAttribute('name', 'message')
-  textArea.setAttribute('placeholder', 'Message')
-  signUp.appendChild(textArea)
-  var submit = document.createElement('a')
-  submit.setAttribute('href', 'javascript:checkEmpty()')
-  submit.setAttribute('id', 'submit')
-  submit.textContent = 'Send'
-  signUp.appendChild(submit)
 
-  return signUp
-}
+// Get the modal
+var modal = document.getElementById('id01')
 
-function checkEmpty() {
-  if (document.getElementById('name').value === '' ||
-  document.getElementById('email').value === '' ||
-  document.getElementById('msg').value === '') {
-    alert('PLEASE SIGN UP FOR FREE RECIPE UPDATES!')
-  }
-  else {
-    document.getElementById('form').submit()
-    alert('THANK YOU! ENJOY COOKING HAVE HAVE GOOD TIME!')
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target === modal) {
+    modal.style.display = 'none'
   }
 }
+
+//
+// function checkEmpty() {
+//   if (document.getElementById('name').value === '' ||
+//   document.getElementById('email').value === '' ||
+//   document.getElementById('msg').value === '') {
+//     alert('PLEASE SIGN UP FOR FREE RECIPE UPDATES!')
+//   }
+//   else {
+//     document.getElementById('form').submit()
+//     alert('THANK YOU! ENJOY COOKING HAVE HAVE GOOD TIME!')
+//   }
+// }
