@@ -44,8 +44,15 @@ var recipes = [
     alt: 'Fava Salad'
   }
 ]
-
+var modal = document.getElementById('subscribe-buttond')
+var newRecipesDirections = document.getElementById('recipes-directions')
 var newRecipesUpdates = document.getElementById('recipes-updates')
+
+recipes.forEach(function (recipePost) {
+  var $post = weeklyUpdate(recipePost)
+  newRecipesUpdates.appendChild($post)
+})
+
 function weeklyUpdate(post) {
   var newRecipes = document.createElement('div')
   newRecipes.classList.add('container')
@@ -81,16 +88,18 @@ function weeklyUpdate(post) {
   recipeView.setAttribute('value', 'Show Cooking Directions')
   recipeView.setAttribute('id', post.id)
   recipeUpdates.appendChild(recipeView)
-
   return newRecipes
 }
 
-recipes.forEach(function (post) {
-  var $post = weeklyUpdate(post)
-  newRecipesUpdates.appendChild($post)
-})
+function findItem(matchId) {
+  for (var i = 0; i < recipes.length; i++) {
+    var current = recipes[i]
+    if (current.id.toString() === matchId) {
+      return current
+    }
+  }
+}
 
-var newRecipesDirections = document.getElementById('recipes-directions')
 function directionsPost(show) {
   var showDirections = document.createElement('div')
   showDirections.classList.add('container')
@@ -156,60 +165,31 @@ function directionsPost(show) {
   closeDirections.setAttribute('value', 'Enjoy Cooking!')
   closeDirections.setAttribute('id', show.id)
   showDirections.appendChild(closeDirections)
-
   return showDirections
 }
 
-function findItem(findId) {
-  for (var i = 0; i < recipes.length; i++) {
-    var current = recipes[i]
-    if (current.id.toString() === findId) {
-      return current
-    }
-  }
-}
-
-var recipeContainer = document.getElementById('recipes-updates')
-recipeContainer.addEventListener('click', function () {
+newRecipesUpdates.addEventListener('click', function (event) {
   if (event.target.tagName === 'INPUT') {
     var recipeId = event.target.id
     var details = findItem(recipeId)
-    var push = directionsPost(details)
+    var seeDirection = directionsPost(details)
     newRecipesDirections.innerHTML = ''
-    newRecipesDirections.appendChild(push)
+    newRecipesDirections.appendChild(seeDirection)
     newRecipesUpdates.classList.add('hidden')
     newRecipesDirections.classList.remove('hidden')
   }
 })
 
 var detailsContainer = document.getElementById('recipes-directions')
-detailsContainer.addEventListener('click', function () {
+detailsContainer.addEventListener('click', function (event) {
   if (event.target.tagName === 'INPUT') {
     newRecipesUpdates.classList.remove('hidden')
     newRecipesDirections.classList.add('hidden')
   }
 })
 
-
-// Get the modal
-var modal = document.getElementById('id01')
-
-// When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target === modal) {
+  if (event.target === modal) {
     modal.style.display = 'none'
   }
 }
-
-//
-// function checkEmpty() {
-//   if (document.getElementById('name').value === '' ||
-//   document.getElementById('email').value === '' ||
-//   document.getElementById('msg').value === '') {
-//     alert('PLEASE SIGN UP FOR FREE RECIPE UPDATES!')
-//   }
-//   else {
-//     document.getElementById('form').submit()
-//     alert('THANK YOU! ENJOY COOKING HAVE HAVE GOOD TIME!')
-//   }
-// }
