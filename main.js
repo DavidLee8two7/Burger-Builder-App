@@ -44,9 +44,16 @@ var recipes = [
     alt: 'Fava Salad'
   }
 ]
-
+var modal = document.getElementById('subscribe-buttond')
+var newRecipesDirections = document.getElementById('recipes-directions')
 var newRecipesUpdates = document.getElementById('recipes-updates')
-function renderPost(post) {
+
+recipes.forEach(function (recipePost) {
+  var $post = weeklyUpdate(recipePost)
+  newRecipesUpdates.appendChild($post)
+})
+
+function weeklyUpdate(post) {
   var newRecipes = document.createElement('div')
   newRecipes.classList.add('container')
   newRecipes.classList.add('new-recipes')
@@ -69,13 +76,14 @@ function renderPost(post) {
   var recipeName = document.createElement('h4')
   recipeName.textContent = post.name
   recipeContents.appendChild(recipeName)
-  var recipeUpdatesBy = document.createElement('h5')
-  recipeUpdatesBy.textContent = post.recipeBy
-  recipeContents.appendChild(recipeUpdatesBy)
-  var recipeDescription = document.createElement('p')
-  recipeDescription.textContent = post.description
-  recipeContents.appendChild(recipeDescription)
+  var recipesBy = document.createElement('h5')
+  recipesBy.textContent = post.recipeBy
+  recipeContents.appendChild(recipesBy)
+  var recipeIntro = document.createElement('p')
+  recipeIntro.textContent = post.description
+  recipeContents.appendChild(recipeIntro)
   var recipeView = document.createElement('input')
+  recipeView.setAttribute('class', 'button-design')
   recipeView.setAttribute('type', 'button')
   recipeView.setAttribute('value', 'Show Cooking Directions')
   recipeView.setAttribute('id', post.id)
@@ -83,12 +91,15 @@ function renderPost(post) {
   return newRecipes
 }
 
-recipes.forEach(function (post) {
-  var $post = renderPost(post)
-  newRecipesUpdates.appendChild($post)
-})
+function findItem(matchId) {
+  for (var i = 0; i < recipes.length; i++) {
+    var current = recipes[i]
+    if (current.id.toString() === matchId) {
+      return current
+    }
+  }
+}
 
-var newRecipesDirections = document.getElementById('recipes-directions')
 function directionsPost(show) {
   var showDirections = document.createElement('div')
   showDirections.classList.add('container')
@@ -125,7 +136,6 @@ function directionsPost(show) {
   var ingredientTitle = document.createElement('h4')
   ingredientTitle.textContent = 'Ingredients'
   directionsIngredient.appendChild(ingredientTitle)
-
   var ingredientList = document.createElement('ul')
   for (var i = 0; i < show.ingredient.length; i++) {
     var ingredients = document.createElement('li')
@@ -133,7 +143,6 @@ function directionsPost(show) {
     ingredientList.appendChild(ingredients)
   }
   directionsIngredient.appendChild(ingredientList)
-
   var cookingDirections = document.createElement('div')
   cookingDirections.classList.add('row')
   cookingDirections.classList.add('new-recipes')
@@ -144,7 +153,6 @@ function directionsPost(show) {
   var directionsTitle = document.createElement('h4')
   directionsTitle.textContent = 'Cooking Directions'
   directionsSteps.appendChild(directionsTitle)
-
   var recipesCookingSteps = document.createElement('ol')
   for (var z = 0; z < show.cookingDirections.length; z++) {
     var cookingSteps = document.createElement('li')
@@ -152,7 +160,6 @@ function directionsPost(show) {
     recipesCookingSteps.appendChild(cookingSteps)
   }
   directionsSteps.appendChild(recipesCookingSteps)
-
   var closeDirections = document.createElement('input')
   closeDirections.setAttribute('type', 'button')
   closeDirections.setAttribute('value', 'Enjoy Cooking!')
@@ -161,32 +168,28 @@ function directionsPost(show) {
   return showDirections
 }
 
-function findItem(findId) {
-  for (var i = 0; i < recipes.length; i++) {
-    var current = recipes[i]
-    if (current.id.toString() === findId) {
-      return current
-    }
-  }
-}
-
-var recipeContainer = document.getElementById('recipes-updates')
-recipeContainer.addEventListener('click', function () {
+newRecipesUpdates.addEventListener('click', function (event) {
   if (event.target.tagName === 'INPUT') {
     var recipeId = event.target.id
     var details = findItem(recipeId)
-    var push = directionsPost(details)
+    var seeDirection = directionsPost(details)
     newRecipesDirections.innerHTML = ''
-    newRecipesDirections.appendChild(push)
+    newRecipesDirections.appendChild(seeDirection)
     newRecipesUpdates.classList.add('hidden')
     newRecipesDirections.classList.remove('hidden')
   }
 })
 
 var detailsContainer = document.getElementById('recipes-directions')
-detailsContainer.addEventListener('click', function () {
+detailsContainer.addEventListener('click', function (event) {
   if (event.target.tagName === 'INPUT') {
     newRecipesUpdates.classList.remove('hidden')
     newRecipesDirections.classList.add('hidden')
   }
 })
+
+window.onclick = function(event) {
+  if (event.target === modal) {
+    modal.style.display = 'none'
+  }
+}
